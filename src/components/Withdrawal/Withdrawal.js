@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'dva';
-import { Alert , Table, Switch , Pagination, Popconfirm, Button,message, Modal,Tabs } from 'antd';
+import { Alert , Table, Switch , Pagination, Popconfirm, Button,message, Modal,Tabs,Row, Col } from 'antd';
 import styles from './Withdrawal.less';
 import { routerRedux , History } from 'dva/router';
 import { PAGE_SIZE } from '../../constants';
@@ -231,43 +231,47 @@ function pageChangeBank(page){
     <div className={styles.normal}>
       <Tabs defaultActiveKey="Apply" onChange={callback}>
         <TabPane tab="支付宝" key="Apply">
-    		<div className={styles.tablelist}>
-              <Table
-              columns={columns}
-              dataSource={WithdraData.results}
-              loading={loading}
-              rowKey={record => record.id}
-              pagination={false}
-            />
-              <Pagination
-                  className="ant-table-pagination"
-                  defaultCurrent={1}
-                  total={WithdraData.count}
-                  current={page}
-                  pageSize={PAGE_SIZE}           
-                  onChange={pageChangeApply}
-              />
-            </div>
+        		<Row>
+              <Col span={24}>
+                  <Table
+                  columns={columns}
+                  dataSource={WithdraData.results}
+                  loading={loading}
+                  rowKey={record => record.id}
+                  pagination={false}
+                />
+                  <Pagination
+                      className="ant-table-pagination"
+                      defaultCurrent={1}
+                      total={WithdraData.count}
+                      current={page}
+                      pageSize={PAGE_SIZE}           
+                      onChange={pageChangeApply}
+                  />
+              </Col>
+            </Row>
                       
         </TabPane>
         <TabPane tab="银行卡" key="Bank">
-             <div className={styles.tablelist}>
-                 <Table
-                    columns={columnbank}
-                    dataSource={WithdraData.results}
-                    loading={loading}
-                    rowKey={record => record.id}
-                    pagination={false}
-                />
-               <Pagination
-                    className="ant-table-pagination"
-                    defaultCurrent={1}
-                    total={WithdraData.count}
-                    current={page}
-                    pageSize={PAGE_SIZE}           
-                    onChange={pageChangeBank}
-                />
-            </div>
+            <Row>
+               <Col span={24}>
+                   <Table
+                      columns={columnbank}
+                      dataSource={WithdraData.results}
+                      loading={loading}
+                      rowKey={record => record.id}
+                      pagination={false}
+                  />
+                   <Pagination
+                        className="ant-table-pagination"
+                        defaultCurrent={1}
+                        total={WithdraData.count}
+                        current={page}
+                        pageSize={PAGE_SIZE}           
+                        onChange={pageChangeBank}
+                    />
+               </Col>
+            </Row>
 
         </TabPane>
       </Tabs>

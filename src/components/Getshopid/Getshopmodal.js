@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import {Select, Modal, Form, Input } from 'antd';
+import {Select, Modal, Form, Input ,Radio } from 'antd';
 
 const FormItem = Form.Item;
 const Option = Select.Option;
+const RadioGroup = Radio.Group;
+
 
 
 class Getshopedit extends Component {
@@ -11,12 +13,13 @@ class Getshopedit extends Component {
     super(props);
     this.state = {
       visible: false,
-      getcoloud:[]
+      getcoloud:[],
+      value: 1,
     };
   }
 
-  showModelHandler = (e) => {
 
+  showModelHandler = (e) => {
     if (e) e.stopPropagation();
     this.setState({
       visible: true,
@@ -56,9 +59,8 @@ class Getshopedit extends Component {
       );
     };
     const { children ,getshopidSelect, getcoloud} = this.props;
-    const { getFieldDecorator } = this.props.form;
-    const { cloudid, shopid, discount } = this.props.record;
-
+    const { getFieldDecorator , getFieldValue } = this.props.form;
+    const { cloudid, shopid , flag,discountmodal } = this.props.record;
     var cityOptions;
     getcoloud?cityOptions = getcoloud.map(city=><Option key={city}>{city}</Option>):null;
     
@@ -122,18 +124,34 @@ class Getshopedit extends Component {
               :null
 
             }
+            <div style={{margin:"0 auto",textAlign: "center"}}>
+                {getFieldDecorator('public', {
+                  initialValue: flag,
+                })(
+                  <Radio.Group>
+                    <Radio value="1">一口价</Radio>
+                    <Radio value="0">折扣</Radio>
+                  </Radio.Group>
+                )}
+                 <FormItem
+                    {...formItemLayout}
+                    label="分成"
+                     style={{
+                        margin: '8px 0',
+                      }}
+                  >
+                    {
+                      getFieldDecorator('bonus', {
+                        rules: [{ required: true,pattern:/^0+[.]+[1-9]$/, message: '请输入0-1之间的数' }],
+                        initialValue: discountmodal,
+                      })(<Input/>)
+                    }
+                </FormItem>
 
-             <FormItem
-              {...formItemLayout}
-              label="折扣"
-            >
-              {
-                getFieldDecorator('bonus', {
-                  rules: [{ required: true,pattern:/^0+[.]+[1-9]$/, message: '请输入0-1之间的数' }],
-                  initialValue: discount,
-                })(<Input/>)
-              }
-            </FormItem>
+
+               
+              </div>          
+     
           </Form>
         </Modal>
       </span>

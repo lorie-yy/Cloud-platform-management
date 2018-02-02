@@ -6,7 +6,7 @@ import { PAGE_SIZE } from '../../constants';
 import styles from './ApplyForRecords.less';
 
 
-import { Table, Alert , Switch ,Tag , Pagination, Popconfirm, Button ,Tabs  } from 'antd';
+import { Table, Alert , Switch ,Tag , Pagination, Popconfirm, Button ,Tabs, Row, Col  } from 'antd';
 
 const TabPane = Tabs.TabPane;
 function ApplyForRecords({ dispatch,fetchApplydata, page:page,loading ,total }) {
@@ -141,46 +141,48 @@ function ApplyForRecords({ dispatch,fetchApplydata, page:page,loading ,total }) 
 
       <Tabs defaultActiveKey="Apply" onChange={callback}>
         <TabPane tab="支付宝" key="Apply">
-             <div className={styles.tablelist}>
-	              <Table
-	              columns={columns}
-	              dataSource={fetchApplydata.results}
-	              loading={loading}
-	              rowKey={record => record.id}
-	              pagination={false}
-	            />
-	             <Pagination
-	                className="ant-table-pagination"
-	                defaultCurrent={1}
-	                total={fetchApplydata.count}
-	                current={page}
-	                pageSize={PAGE_SIZE}           
-	                onChange={pageChangeApply}
-	              />
-          	 </div>
+             <Row>
+               <Col span={24}>
+    	              <Table
+    	              columns={columns}
+    	              dataSource={fetchApplydata.results}
+    	              loading={loading}
+    	              rowKey={record => record.id}
+    	              pagination={false}
+    	            />
+    	             <Pagination
+    	                className="ant-table-pagination"
+    	                defaultCurrent={1}
+    	                total={fetchApplydata.count}
+    	                current={page}
+    	                pageSize={PAGE_SIZE}           
+    	                onChange={pageChangeApply}
+    	              />
+          	  </Col>
+            </Row>
           
 
         </TabPane>
-        <TabPane tab="银行卡" key="Bank">
-          
-          <div className={styles.tablelist}>
-	            <Table
-		            columns={columnbank}
-		            dataSource={fetchApplydata.results}
-		            loading={loading}
-		            rowKey={record => record.id}
-		            pagination={false}
-		          />
-	           <Pagination
-	               className="ant-table-pagination"
-	               defaultCurrent={1}
-	               total={fetchApplydata.count}
-	               current={page}
-	               pageSize={PAGE_SIZE}           
-	               onChange={pageChangeBank}
-	            />
-          </div>
-        
+        <TabPane tab="银行卡" key="Bank">         
+            <Row>
+              <Col span={24}>
+      	            <Table
+      		            columns={columnbank}
+      		            dataSource={fetchApplydata.results}
+      		            loading={loading}
+      		            rowKey={record => record.id}
+      		            pagination={false}
+      		          />
+      	           <Pagination
+      	               className="ant-table-pagination"
+      	               defaultCurrent={1}
+      	               total={fetchApplydata.count}
+      	               current={page}
+      	               pageSize={PAGE_SIZE}           
+      	               onChange={pageChangeBank}
+      	            />
+              </Col>
+            </Row>
         </TabPane>
           
       </Tabs>

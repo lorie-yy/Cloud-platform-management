@@ -20,15 +20,15 @@ function Thirdpartyconfig({ dispatch, list: dataSource, page, loading ,total }) 
    			id:id
    		}
    		new Promise((resolve, reject) => {
-	    dispatch({
-	      type: 'Thirdparyconfig/saveThirdparty',
-	      payload: {
-	      	values ,
-	      	list,
-	     	resolve,
-	      	reject
-	      }
-	    });
+  	    dispatch({
+  	      type: 'Thirdparyconfig/saveThirdparty',
+  	      payload: {
+  	      	values ,
+  	      	list,
+  	     	  resolve,
+  	      	reject
+  	      }
+  	    });
 	}).then( res => {
 	      if(res.data.error == 0){
       		 	message.success("删除成功");

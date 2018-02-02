@@ -1,12 +1,43 @@
+@import "~antd/lib/style/themes/default.less";
+.logo {
+  height: 64px;
+  position: relative;
+  line-height: 64px;
+  padding-left: (@menu-collapsed-width - 32px) / 2;
+  transition: all .3s;
+  background: #002140;
+  overflow: hidden;
+  img {
+    display: inline-block;
+    vertical-align: middle;
+    height: 32px;
+  }
+  h1 {
+    color: #fff;
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 20px;
+    margin: 0 0 0 12px;
+    font-family: 'Myriad Pro', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    font-weight: 600;
+  }
+}
+.sider{
+    min-height: 100vh;
+    box-shadow: 2px 0 6px rgba(0, 21, 41, .35);
+    position: relative;
+    z-index: 10;
+}
 normal {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    background: #f0f2f5;
 }
 
 .content {
+  padding: 32px 0;
   flex: 1;
-  display: flex;
 }
 
 .main {
@@ -20,15 +51,5 @@ normal {
 }
 
 .heaerspan{
-  position: absolute;
-  top: 0;
-  right: 30px;
-}
-
-
-.logo {
-  height: 32px;
-  background: #333;
-  border-radius: 6px;
-  margin: 16px;
+  float:right;
 }

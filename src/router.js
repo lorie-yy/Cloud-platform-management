@@ -58,6 +58,11 @@ function RouterConfig({ history,app }) {
 			models: () => [import('./models/SignUp')],
 			component:() => import('./components/SignUp/SignUp'),
 		},
+		{
+			path:'/Set',
+			models: () => [import('./models/Set')],
+			component:() => import('./components/Set/Set'),
+		},
 	]
 	
   return (

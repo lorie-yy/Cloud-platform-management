@@ -1,16 +1,24 @@
 import React from 'react';
 import { connect } from 'dva';
-import { Card,Row, Col } from 'antd';
+import { Card,Row, Col} from 'antd';
 import { routerRedux  } from 'dva/router';
 import { Chart, Axis, Geom, Tooltip,Guide } from 'bizcharts';
 import { View } from '@antv/data-set';
 
 
 
-
-
 function Home({HomeData,dataSourcename,myDateArr}){
-	//ownincome 今日总收益
+
+	
+
+	// let content = [{
+	//     name: '内容一',
+	//     date: 'neirong 2'
+	// }];
+	
+	// writeExcel('总收益', headers, content);
+
+	// ownincome 今日总收益
 	// const data = [
 	// 	{ name: '李聪',  date: '2018-01-08', licong: 6.56,licong1:13,licong22:9,licong3:19,admin:1,boda:10,licong18:20 },
 	// 	{ name: '李聪1', date: '2018-01-09', licong: 3.66,licong1:8,licong22:16,licong3:23,admin:6,boda:10,licong18:20 },
@@ -20,32 +28,35 @@ function Home({HomeData,dataSourcename,myDateArr}){
 	// 	{ name: '李聪6', date: '2018-01-13', licong: 4.11,licong1:9,licong22:11,licong3:16,admin:19.9 ,boda:10,licong18:20},
 	// 	{ name: '李聪7', date: '2018-01-14', licong: 5.65,licong1:6,licong22:16,licong3:9,admin:8,boda:10,licong18:20},
 	// ];
+
+	let content = myDateArr;
+
+	///分割线--------------------------------------------------------------------------------
+	
 	const data =myDateArr
 
-
-	 const {DataSet} = View;
+	const {DataSet} = View;
 	 
-	 var list = HomeData.lastweeklydate;	 
+	var list = HomeData.lastweeklydate;	 
 
-	  const ds = new DataSet();
-	  const dv = ds.createView().source(data);
-      dv.transform({
-        type: 'fold',
-        fields: dataSourcename, // 展开字段集
-        key: 'money', // key字段
-        value: 'earnings', // value字段
-      });
+	const ds = new DataSet();
+	const dv = ds.createView().source(data);
+	dv.transform({
+		type: 'fold',
+		fields: dataSourcename, // 展开字段集
+		key: 'money', // key字段
+		value: 'earnings', // value字段
+	});
 
-
-      const cols = {
-        date: {
-          range: [ 0, 1 ]
-        }
-      }
-      const gridStyle = {
-		  textAlign: 'center',
-		};
-
+	const cols = {
+		date: {
+		  range: [ 0, 1 ]
+		}
+	}
+	const gridStyle = {
+		textAlign: 'center',
+	};
+	
 	return(
 		<div>
 			<Row gutter={16}>
@@ -69,17 +80,22 @@ function Home({HomeData,dataSourcename,myDateArr}){
 		      	<Card style={gridStyle} title="总粉丝数" bordered={true}>{HomeData.totalfansnum}</Card>
 		      </Col>
 		    </Row>
-		 
-		  <h4 style={{color:"#07a",padding:"30px 0 0 0",textAlign:'center'}}>最近7日的收益及粉丝数</h4>
-		  <Chart height={400} data={dv} scale={cols} forceFit>
-		  	  <Axis name="date" />
-	          <Axis name="earnings" label={{formatter: val => `${val}元`}}/>
+		 <Row>
+		 	<Col span={24}>
+		  		<h4 style={{color:"#07a",padding:"30px 0 0 0",textAlign:'center'}}>最近7日的收益及粉丝数</h4>
+		  		   	
+				  <Chart height={400} data={dv} scale={cols} forceFit>
+				  	  <Axis name="date" />
+			          <Axis name="earnings" label={{formatter: val => `${val}元`}}/>
 
-	          <Tooltip title={null} crossLine={{ stroke: '#f00' }} />
+			          <Tooltip title={null} crossLine={{ stroke: '#f00' }} />
 
-	          <Geom type="line" position="date*earnings" size={2} color={'money'} shape={'smooth'} />
-	          <Geom type='point' position="date*earnings" size={4} shape={'circle'} color={'money'} style={{ stroke: '#fff', lineWidth: 1}} />
-        </Chart>
+			          <Geom type="line" position="date*earnings" size={2} color={'money'} shape={'smooth'} />
+			          <Geom type='point' position="date*earnings" size={4} shape={'circle'} color={'money'} style={{ stroke: '#fff', lineWidth: 1}} />
+		        </Chart>
+        	</Col>
+        	
+        </Row>
 		</div>
 	)
 }

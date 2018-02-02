@@ -8,14 +8,16 @@ export default {
     allclouddata:[],
     count: null,
     page:null,
+    dataTableEarn:[],
 
   },
   reducers: {
-  	save(state, { payload: {data:list,page:page } }) {      
-
+  	save(state, { payload: {data:list,page:page } }) { 
+        let datatable = list.results;     
+        
         let EarnSource=[],allclouddata=[],count = list.count;
           // username
-        for(let Earndata of list.results){
+        /**for(let Earndata of list.results){
            EarnSource.push(Earndata.username);
         }   
         // let cloudiddata=[...new Set(EarnSource)];
@@ -46,28 +48,43 @@ export default {
                     dataSource.availablecash+=sum.availablecash/100;
                     dataSource.discount+=sum.discount;
                     dataSource.username+=sum.username;
-                    dataSource.id+=sum.id;
+                    dataSource.id =sum.id;
                 }               
             }  
               allclouddata.push(dataSource);
              
-          }
+          }**/
           
-		return { ...state, allclouddata,count,page};      
+		return { ...state,count,page,datatable};      
 	},
+  datalist(state, { payload: {dataTableEarn } }){
+    console.log(dataTableEarn)
+    return { ...state,dataTableEarn};  
+  }
 
   },
   effects: {
     *fetchearn({ payload: { page = 1,value="" } }, { call, put }) {
         const {data} = yield call(Earn.fetchearn ,page);
         yield put({
-        type: 'save',
-        payload: {
-          data,
-          page: parseInt(page, 10),
-        },
-      });
+              type: 'save',
+              payload: {
+                data,
+                page: parseInt(page, 10),
+              },
+          });
       },
+    *dateearn({payload},{call,put}){
+        const datels = yield call(Earn.fetchinfo ,payload);
+        let dataTableEarn =JSON.parse(datels.data);
+        yield put({
+              type: 'datalist',
+              payload: {
+                dataTableEarn,
+              },
+        });
+        console.log(dataTableEarn)
+    }
       
   },
   subscriptions: {

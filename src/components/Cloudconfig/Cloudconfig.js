@@ -100,11 +100,7 @@ function Cloudconfig({ props,dispatch, cloudData,page:page, thirdpartdatals,Clou
 
 	 
 	const columns = [         
-    	{
-	      title: '云平台名称',
-	      dataIndex: 'cloudname',
-	      key: 'cloudname',
-	    },
+    	
 	    {
 	      title: '云平台编号',
 	      dataIndex: 'cloudid',

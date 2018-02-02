@@ -18,7 +18,8 @@ export function fetchshopAll(page) {
 }
 
 export function addshopinfo(value,typeThird) {
-  return request(`/wechatfans/savediscountinfo?cloudid=${value.cloudid}&bonus=${value.bonus}&shopid=${value.shopid}&typeThird=${typeThird}`,{
+  console.log(value)
+  return request(`/wechatfans/savediscountinfo?cloudid=${value.cloudid}&bonus=${value.bonus}&shopid=${value.shopid}&typeThird=${typeThird}&public=${value.public}`,{
     method: 'GET',
   });
 }

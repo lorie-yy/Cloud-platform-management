@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'dva';
-import { Row ,Col ,Table, Pagination,message, Popconfirm, Button ,Tag ,Alert } from 'antd';
+import { Row ,Col ,Table, Pagination,message, Popconfirm, Button ,Tag ,Alert} from 'antd';
 
 import { routerRedux  } from 'dva/router';
 
@@ -8,9 +8,6 @@ import styles from './Getshopid.less';
 import Getshopmodal from './Getshopmodal';
 // import Getshopedit from './Getshopedit';
 import { PAGE_SIZE } from '../../constants';
-
-
-
 
 function Getshopid({dispatch,shopAll:dataSource,page:page,getshopidSelect,getcoloud,loading}) {
 
@@ -21,7 +18,7 @@ function Getshopid({dispatch,shopAll:dataSource,page:page,getshopidSelect,getcol
 		      payload: {
 		      	values,
 		      	resolve,
-             	reject,
+            reject,
 		      }
 		    })
 	    }).then( res => {
@@ -42,7 +39,7 @@ function Getshopid({dispatch,shopAll:dataSource,page:page,getshopidSelect,getcol
 	   			value,
 	   			typeThird,
 	   			resolve,
-             	reject,
+          reject,
 	   		},
 	   	 })
    		}).then( res => {
@@ -136,7 +133,7 @@ function Getshopid({dispatch,shopAll:dataSource,page:page,getshopidSelect,getcol
       key: 'operation',
       render: (text, record) => (
         <span className={styles.operation}>
-        	<Getshopmodal  record={record} onOk={editThirdparty}>
+        	  <Getshopmodal  record={record} onOk={editThirdparty}>
             	<a>修改</a>
           	</Getshopmodal>
         
@@ -148,13 +145,11 @@ function Getshopid({dispatch,shopAll:dataSource,page:page,getshopidSelect,getcol
     },
   ];
 
-
   return (
     <div className={styles.normal}>
     	<Getshopmodal  getcoloud={getcoloud} getshopidSelect={getshopidSelect} addTodo={getShopid} onOk={getShopidlist} record={{}} >          
             <Button className={styles.newly} type="primary">新增配置折扣</Button>
       	</Getshopmodal>	   	
-
         <div>
       		 <Table
 					columns={columns}

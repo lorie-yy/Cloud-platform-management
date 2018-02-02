@@ -15,3 +15,20 @@ export function fetchpro(value) {
 	    method: 'GET',
 	  });
 }
+
+
+export function fetchinfo(values) {
+		console.log(values.username)
+		if(!values.username){
+			console.log(1)
+			 return request(`/wechatfans/showsomedayinfo?username=${'unknown'}&startdate=${values.date[0]}&enddate=${values.date[1]}`,{
+			    method: 'GET',
+			 });
+		}else {
+			console.log(2)
+			return request(`/wechatfans/showsomedayinfo?username=${values.username}&startdate=${values.date[0]}&enddate=${values.date[1]}`,{
+			    method: 'GET',
+			 });
+		}
+	 
+}

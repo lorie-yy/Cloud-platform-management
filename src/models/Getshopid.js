@@ -14,6 +14,19 @@ export default {
   },
   reducers: {
   	 save(state, { payload: {data:shopAll,page:page,Cloudlist:cloud } }) {
+      // console.log(shopAll)
+      for(let i = 0; i < shopAll.results.length ; i++){
+        shopAll.results[i].discountmodal = shopAll.results[i].discount
+        if(shopAll.results[i].flag == 0 ){
+            shopAll.results[i].discount = '折扣：'+shopAll.results[i].discount
+        }else 
+
+        if(shopAll.results[i].flag == 1) {
+          shopAll.results[i].discount = '一口价：'+shopAll.results[i].fixedprice
+        }
+        shopAll.results[i].flag=shopAll.results[i].flag.toString()
+
+      }
 	  	 		var getcoloud = [];
 		  	 	for(let cloudidyun of cloud){
 		  	 		getcoloud.push(cloudidyun.cloudid);
