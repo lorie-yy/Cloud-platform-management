@@ -48,9 +48,9 @@ class ThirdpartyModal extends Component {
     return (
       <span>
         <span onClick={this.showModelHandler}>
-          { children }
+          {children}
         </span>
-        <Modal title="修改"  okText="确认" cancelText="取消"  visible={this.state.visible} onOk={this.okHandler} onCancel={this.hideModelHandler} >
+        <Modal title="修改" okText="确认" cancelText="取消" visible={this.state.visible} onOk={this.okHandler} onCancel={this.hideModelHandler} >
           <Form layout="horizontal" onSubmit={this.okHandler}>
             <FormItem
               {...formItemLayout}
@@ -58,7 +58,7 @@ class ThirdpartyModal extends Component {
             >
               {
                 getFieldDecorator('thirdpartname', {
-                  rules: [{ required: true,pattern:/^[A-Za-z]+$/, message: '请输入正确的字母!' }],
+                  rules: [{ required: true, pattern: /^[A-Za-z]+$/, message: '请输入正确的字母!' }],
                   initialValue: thirdpartname,
                 })(<Input />)
               }
@@ -70,7 +70,7 @@ class ThirdpartyModal extends Component {
             >
               {
                 getFieldDecorator('type', {
-                  rules: [{ required: true,pattern:/^[0-9]?[1-9]$/, message: '请输入正整数' }],
+                  rules: [{ required: true, pattern: /^[0-9]?[1-9]$/, message: '请输入正整数' }],
                   initialValue: type,
                 })(<Input type="number" />)
               }

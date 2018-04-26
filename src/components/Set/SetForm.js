@@ -8,17 +8,17 @@ class SetForm extends React.Component {
     const { onOk } = this.props;
     this.props.form.validateFields((err, values) => {
       if (!err) {
-      	onOk(values);
+        onOk(values);
       }
     });
   }
   render() {
     const { getFieldDecorator } = this.props.form;
-    const {set} = this.props;
-    const { title,detail} = set
+    const { set } = this.props;
+    const { title, detail } = set
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">
-      <FormItem>
+        <FormItem>
           {getFieldDecorator('title', {
             rules: [{ required: true, message: '请输入标题!' }],
             initialValue: title,
@@ -27,23 +27,23 @@ class SetForm extends React.Component {
           )}
         </FormItem>
         <h3>内容</h3>
-     
-    
+
+
         <FormItem>
           {getFieldDecorator('detail', {
             rules: [{ required: true, message: '请输入内容!' }],
-             initialValue: detail,
+            initialValue: detail,
           })(
             <TextArea placeholder="随便写点东西……" rows={10} />
           )}
         </FormItem>
-     
+
         <FormItem>
-      
+
           <Button type="primary" htmlType="submit" className="login-form-button">
             提交
           </Button>
-    
+
         </FormItem>
       </Form>
     );

@@ -15,7 +15,7 @@ class SignUpForm extends React.Component {
     const { onOkList } = this.props;
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-      	onOkList(values);
+        onOkList(values);
         console.log('Received values of form: ', values);
       }
     });
@@ -92,7 +92,7 @@ class SignUpForm extends React.Component {
               validator: this.checkConfirm,
             }],
           })(
-            <Input placeholder="请输入密码"  type="password" />
+            <Input placeholder="请输入密码" type="password" />
           )}
         </FormItem>
         <FormItem
@@ -117,25 +117,25 @@ class SignUpForm extends React.Component {
             <Input placeholder="请输入云平台编号" />
           )}
         </FormItem>
-     
+
         <FormItem
           {...formItemLayout}
           label="商铺ID"
         >
           {getFieldDecorator('shopid', {
           })(
-              <Input placeholder="请输入商铺id" />
+            <Input placeholder="请输入商铺id" />
           )}
         </FormItem>
-       
+
         <FormItem {...tailFormItemLayout}>
-        <Row>
-	      <Col span={24} offset={0}>
-	      	 <Button style={{width:"100%"}} type="primary" htmlType="submit">注册</Button>
-	      </Col>
-	    </Row>
-           
-           
+          <Row>
+            <Col span={24} offset={0}>
+              <Button style={{ width: "100%" }} type="primary" htmlType="submit">注册</Button>
+            </Col>
+          </Row>
+
+
         </FormItem>
       </Form>
     );
