@@ -11,7 +11,7 @@
   },
   "proxy": {
     "/wechatfans": {
-      "target": "http://192.168.119.18:8000/wechatfans/",
+      "target": "http://192.168.119.24:8000/wechatfans/",
       "changeOrigin": true,
       "pathRewrite": { "^/wechatfans" : "" }
     }
