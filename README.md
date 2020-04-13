@@ -1,4 +1,4 @@
-# Cloud-platform-management
-npm install		  安装项目依赖包
-npm start			  启动项目
-npm run build		打包
+# react + dva + ant design + less
+-  npm install 安装依赖包
+-  npm start 启动
+-  npm run build 打包
